@@ -10,7 +10,7 @@ const Form = ({ handleClose, days }) => {
     const [notes, setNotes] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState({
-        description: false,
+        notes: false,
         name: false,
         request: false
     });
@@ -42,21 +42,6 @@ const Form = ({ handleClose, days }) => {
         const choreDay = document.querySelector("#chore-day").value
         console.log(user, chore, choreDay, )
         choreManager.createChore(user, chore, days.filter(day => day.name === choreDay)[0].day, `${user} completed this chore on ${new Date().toLocaleDateString()}`)
-        // if(!descriptionRegex.test(description) && !nameRegex.test(name)) {
-        //     setError({
-        //         ...error,
-        //         description: true,
-        //         name: true
-        //     })
-        //     return
-        // } else if(!descriptionRegex.test(description)) {
-        //     setError({ ...error, description: true })
-        //     return
-        // } else if(!nameRegex.test(name)) {
-        //     setError({ ...error, name: true })
-        //     return
-        // }
- 
     }
 
 
@@ -71,23 +56,17 @@ const Form = ({ handleClose, days }) => {
                     Update your Chore
                 </div>
                 <hr />
-                <div className={error.description ? "input-container error-field" : "input-container"}>
+                <div className={error.user ? "input-container error-field" : "input-container"}>
                     <Dropdown name="user" data={["Giovanni", "Natasha"]} />
-                    {/* <label></label>
-                    <textarea
-                        onBlur={(e) => clearError("description")}
-                        required
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                    /> */}
-                    <div className={error.description ? "error" : "error hidden"}>The description of company must be longer than 10 characters</div>
+
+                    <div className={error.user ? "error" : "error hidden"}>Hold</div>
                 </div>
                 <div className={error.name ? "input-container error-field" : "input-container"}>
                     <Dropdown 
                     name="chore" 
                     data={["trash", "floors", "laundry", "floors"]}
                     />
-                    <div className={error.name ? "error" : "error hidden"}>The name of company must be longer than 3 characters</div>
+                    <div className={error.name ? "error" : "error hidden"}>Hold</div>
                 </div>
                 <div className={error.name ? "input-container error-field" : "input-container"}>
                     <Dropdown 
@@ -96,16 +75,16 @@ const Form = ({ handleClose, days }) => {
                     />
                     <div className={error.name ? "error" : "error hidden"}>The name of company must be longer than 3 characters</div>
                 </div>
-                {/* <div className={error.description ? "input-container error-field" : "input-container"}>
+                {/* <div className={error.notes ? "input-container error-field" : "input-container"}>
                     <label>Notes</label>
                     <textarea
                         id="notes"
-                        onBlur={(e) => clearError("description")}
+                        onBlur={(e) => clearError("notes")}
                         required
                         value={notes}
                         onChange={(e) => setNotes(e.target.value)}
                     />
-                    <div className={error.description ? "error" : "error hidden"}>The description of company must be longer than 10 characters</div>
+                    <div className={error.notes ? "error" : "error hidden"}>The note must be longer</div>
                 </div> */}
                 { loading ? (
                     <div className="loading-ring"><div></div><div></div><div></div><div></div></div>
